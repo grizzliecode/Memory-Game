@@ -2,6 +2,7 @@ package com.example.memorygame;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,10 @@ public class GameViewController implements Initializable {
 
     @FXML
     private Label scoreLabel;
+    @FXML
+    private Label highscoreLabel;
+    @FXML
+    private Button playAgainButton;
     private MemCard card1 = null, card2 = null;
     private int currLevel = 1;
     private int score = 0;
@@ -40,6 +45,11 @@ public class GameViewController implements Initializable {
     }
     public void initView()
     {
+        for (int i=0;i<myFlowPane.getChildren().size();i++)
+        {
+            ImageView imageView1 = (ImageView) myFlowPane.getChildren().get(i);
+            imageView1.setImage(null);
+        }
         for (int i = 0; i < myFlowPane.getChildren().size() && i < number_of_pairs * 2; i++) {
             ImageView imageView1 = (ImageView) myFlowPane.getChildren().get(i);
             imageView1.setImage(new Image(Cards.class.getResourceAsStream("images/Back.png")));
@@ -52,6 +62,14 @@ public class GameViewController implements Initializable {
 
     public void playAgain()
     {
+        playAgainButton.setOnAction(event -> {
+            currLevel = 1;
+            score = 0;
+            number_of_pairs = 2;
+            nr_matched = 0;
+            initView();
+            playAgain();
+        });
         initView();
         play();
     }
@@ -120,6 +138,11 @@ public class GameViewController implements Initializable {
     }
 
     private void updateScoreAndLevel() {
+        if(Integer.parseInt(highscoreLabel.getText()) < score)
+        {
+            ScoreReader.writeToFile(Integer.toString(score));
+        }
+        highscoreLabel.setText(ScoreReader.readFromFile());
         scoreLabel.setText(Integer.toString(score));
         messageLabel.setText(mesaj);
         levelLabel.setText(Integer.toString(currLevel));
