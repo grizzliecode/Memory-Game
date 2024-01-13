@@ -164,4 +164,60 @@ public class GameViewController implements Initializable {
             }
         }
     }
+
+    public Label getLevelLabel() {
+        return levelLabel;
+    }
+
+    public Label getMessageLabel() {
+        return messageLabel;
+    }
+
+    public FlowPane getMyFlowPane() {
+        return myFlowPane;
+    }
+
+    public Label getScoreLabel() {
+        return scoreLabel;
+    }
+
+    public Label getHighscoreLabel() {
+        return highscoreLabel;
+    }
+
+    public Button getPlayAgainButton() {
+        return playAgainButton;
+    }
+
+    public MemCard getCard1() {
+        return card1;
+    }
+
+    public MemCard getCard2() {
+        return card2;
+    }
+
+    public int getCurrLevel() {
+        return currLevel;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getNr_matched() {
+        return nr_matched;
+    }
+
+    public ArrayList<MemCard> getMyCards() {
+        return myCards;
+    }
+
+    public int getNumber_of_pairs() {
+        return number_of_pairs;
+    }
+
+    public String getMesaj() {
+        return mesaj;
+    }
 }

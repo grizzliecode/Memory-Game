@@ -1,4 +1,5 @@
 module com.example.memorygame {
+    requires javafx.swing;
     requires javafx.controls;
     requires javafx.fxml;
 
