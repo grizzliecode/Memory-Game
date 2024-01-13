@@ -48,11 +48,13 @@ public class GameViewController implements Initializable {
         for (int i=0;i<myFlowPane.getChildren().size();i++)
         {
             ImageView imageView1 = (ImageView) myFlowPane.getChildren().get(i);
-            imageView1.setImage(null);
+            imageView1.imageProperty().set(null);
+            imageView1.setDisable(true);
         }
         for (int i = 0; i < myFlowPane.getChildren().size() && i < number_of_pairs * 2; i++) {
             ImageView imageView1 = (ImageView) myFlowPane.getChildren().get(i);
             imageView1.setImage(new Image(Cards.class.getResourceAsStream("images/Back.png")));
+            imageView1.setDisable(false);
             imageView1.setUserData(i);
             imageView1.setOnMouseClicked(event -> {
                 flipCard((int) imageView1.getUserData());
